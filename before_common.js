@@ -1,16 +1,15 @@
-window.addEventListener('load', function () {
-    var nodelist = document.querySelectorAll('[link]');
-    Array.prototype.slice.call(nodelist, 0).forEach(function (e, i) {
-        e.addEventListener('click', function (evt) {
-            if (e.getAttribute('_blank') !== null) {
-                window.open(e.getAttribute('link'), '_blank');
-            } else {
-                location.href = e.getAttribute('link');
-            }
-            return false;
-        });
-    });
-});
+function triggerEvent(element, event) {
+   if (document.createEvent) {
+       // IE以外
+       var evt = document.createEvent("HTMLEvents");
+       evt.initEvent(event, true, true ); // event type, bubbling, cancelable
+       return element.dispatchEvent(evt);
+   } else {
+       // IE
+       var evt = document.createEventObject();
+       return element.fireEvent("on"+event, evt)
+   }
+}
 
 Number.prototype.zeroFill = function (digits) { return String(this).zeroFill(digits); }
 Number.prototype.spaceFill = function (digits) { return String(this).spaceFill(digits); }
