@@ -1,11 +1,11 @@
 window.addEventListener('load', function () {
-    var nodelist = document.querySelectorAll('*[href]');
+    var nodelist = document.querySelectorAll('[link]');
     Array.prototype.slice.call(nodelist, 0).forEach(function (e, i) {
         e.addEventListener('click', function (evt) {
             if (e.getAttribute('_blank') !== null) {
-                window.open(e.getAttribute('href'), '_blank');
+                window.open(e.getAttribute('link'), '_blank');
             } else {
-                location.href = e.getAttribute('href');
+                location.href = e.getAttribute('link');
             }
             return false;
         });
